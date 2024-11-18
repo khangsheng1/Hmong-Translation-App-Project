@@ -1,0 +1,63 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure full viewport height is used */
+    background-color: #f9f9f9; /* Optional: light background color */
+}
+
+/* Translator app container */
+.translator-app {
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    background-color: #ffffff; /* Optional: white background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for design */
+    padding: 20px;
+    border-radius: 8px; /* Optional: rounded corners */
+}
+
+/* Text areas */
+textarea {
+    width: 100%;
+    height: 100px;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+    box-sizing: border-box;
+}
+
+/* Buttons and select dropdowns */
+button, select {
+    font-size: 16px;
+    padding: 10px 15px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+select {
+    background-color: white;
+    color: #333;
+}
+
+/* Optional: Styling for h1 */
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
