@@ -3,36 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pattern Border Website with Translator App</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to the external CSS file for the patterned border -->
-
-    <!-- Embedded CSS for Translator App -->
-    <style>
-        /* Translator App CSS here */
-    </style>
+    <title>Translator App</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="border-wrapper">
-        <!-- Corner elements -->
-        <div class="top-left"></div>
-        <div class="top-right"></div>
-        <div class="bottom-left"></div>
-        <div class="bottom-right"></div>
-
-        <div class="side-borders">
-            <div class="left-border"></div> <!-- Left border -->
-            <div class="right-border"></div> <!-- Right border -->
+    <div class="translator-app">
+        <h1>Hmong-English Translator</h1>
+        <div class="input-section">
+            <textarea id="inputText" placeholder="Enter text or tap the mic to speak"></textarea>
+            <button id="micButton">🎤</button>
+            <select id="inputLang">
+                <option value="hmn">Hmong</option>
+                <option value="en">English</option>
+            </select>
         </div>
-
-        <!-- Content with Translator App inside -->
-        <div class="content">
-            <h1>Welcome to My Website</h1>
-            <p>This is a website with a beautiful patterned border and a translator app embedded below.</p>
-
-            <!-- Translator App HTML here -->
+        <button id="translateButton">Translate</button>
+        <div class="output-section">
+            <textarea id="outputText" readonly></textarea>
+            <select id="outputLang">
+                <option value="hmn">Hmong</option>
+                <option value="en">English</option>
+            </select>
         </div>
     </div>
 
-    <!-- Embedded JavaScript for Translator App -->
+    <script>
+        const translateButton = document.getElementById('translateButton');
+        const micButton = document.getElementById('micButton');
+        const inputText = document.getElementById('inputText');
+        const outputText = document.getElementById('outputText');
+        const inputLang = document.getElementById('inputLang');
+        const outputLang = document.getElementById('outputLang');
+
+        async function translateTextLibre(text, sourceLang, targetLang) {
+            const response = await fetch("https://libretranslate.com/translate", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    q: text,
+                    source: sourceLang,
+                    target: targetLang,
+                    format: "text"
+                })
+            });
+            const data = await response.json();
+            return data.translatedText;
+        }
+
+        translateButton.addEventListener('click', async () => {
+            const text = inputText.value;
+            const sourceLang = inputLang.value;
+            const targetLang = outputLang.value;
+            if (text.trim()) {
+                const translation = await translateTextLibre(text, sourceLang, targetLang);
+                outputText.value = translation;
+            }
+        });
+    </script>
 </body>
 </html>
